@@ -25,10 +25,10 @@ const raysRouter = require('./routes/rays')
       res.send('<h1>store api</h1><a href="/api/v1/products"> product routes</a>')
   })
 
- app.use('/api/v1/patient',require('./routes/patient'))
- app.use('/api/v1/rays',require('./routes/rays'))
- app.use('/api/v1/doctor',require('./routes/doctorRoutes'))
- app.use('/api/v1/admin',require('./routes/adminRoutes'))
+//  app.use('/api/v1/patient',require('./routes/patient'))
+//  app.use('/api/v1/rays',require('./routes/rays'))
+//  app.use('/api/v1/doctor',require('./routes/doctorRoutes'))
+//  app.use('/api/v1/admin',require('./routes/adminRoutes'))
 /*  */
 
  app .use(notFoundMiddleware)
