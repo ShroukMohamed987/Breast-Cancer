@@ -21,9 +21,9 @@ const raysRouter = require('./routes/rays')
 
  //routes
 
-//  app.get('/',(req,res)=>{
-//      res.send('<h1>store api</h1><a href="/api/v1/products"> product routes</a>')
-//  })
+  app.get('/',(req,res)=>{
+      res.send('<h1>store api</h1><a href="/api/v1/products"> product routes</a>')
+  })
 
  app.use('/api/v1/patient',require('./routes/patient'))
  app.use('/api/v1/rays',require('./routes/rays'))
