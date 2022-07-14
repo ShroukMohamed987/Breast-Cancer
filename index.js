@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express=require('express')
  const app=express();
-
+const path= require('path')
  const notFoundMiddleware=require('./middleware/not-found')
  const errorMiddleware=require('./middleware/error-handler')
    
@@ -25,10 +25,10 @@ const raysRouter = require('./routes/rays')
       res.send('<h1>store api</h1><a href="/api/v1/products"> product routes</a>')
   })
 
-//  app.use('/api/v1/patient',require('./routes/patient'))
-//  app.use('/api/v1/rays',require('./routes/rays'))
-//  app.use('/api/v1/doctor',require('./routes/doctorRoutes'))
-//  app.use('/api/v1/admin',require('./routes/adminRoutes'))
+ app.use('/api/v1/patient',require('./routes/patient'))
+  app.use('/api/v1/rays',require('./routes/rays'))
+  app.use('/api/v1/doctor',require('./routes/doctorRoutes'))
+  app.use('/api/v1/admin',require('./routes/adminRoutes'))
 /*  */
 
  app .use(notFoundMiddleware)
@@ -36,6 +36,7 @@ const raysRouter = require('./routes/rays')
 
  const port=process.env.PORT ||3000
 
+ app.use(express.static(path.join(__dirname, 'procfile')));
 
  const start =async()=>{
      try{
