@@ -36,7 +36,7 @@ const raysRouter = require('./routes/rays')
 
  const port=process.env.PORT ||3000
 
- app.use(express.static(path.join(__dirname, 'procfile')));
+
 
  const start =async()=>{
      try{
