@@ -27,6 +27,19 @@ const getAllrays = async (req, res) => {
 }
 
 
+/////get one x_ray
+const get_ray = async (req, res) => {
+  const name = req.params.name
+  //const { name } = req.body;
+  const ray = await raysModel.findOne({ name });
+ // res.status(200).json({ drugs });
+  if (!ray) {
+      res.status(404).json({ msg: 'No x_ray for this name '+name });
+    }
+    res.status(200).json({ ray });
+};
+
+
   /////update drug
   const update_ray = async (req, res) => {
     try {
@@ -82,5 +95,6 @@ const getAllrays = async (req, res) => {
     getAllrays,
     addray,
     update_ray,
-    delete_ray
+    delete_ray,
+    get_ray
   };

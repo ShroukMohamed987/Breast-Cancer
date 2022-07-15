@@ -1,7 +1,9 @@
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 const DoctorModel = require('../models/doctorModel');
-
+const { uploadSingleImage } = require('../middleware/uploadImageMiddleware');
+const sharp = require('sharp');
+const { v4: uuidv4 } = require('uuid');
 const getAllDoctor=async(req,res)=>{
     const allDoc=await DoctorModel.find()
     if(!allDoc) return res.status(500).json({msg:"Not Patient Found"})
@@ -107,10 +109,30 @@ const createAccessToken = (user) => {
     return jwt.sign(user, process.env.ACCESS_TOKEN, { expiresIn: "11m" });
   };
 
+  const uploadCategoryImage = uploadSingleImage('image');
+
+  // Image processing
+  const resizeImage = async (req, res, next) => {
+    const filename = `doctor-${uuidv4()}-${Date.now()}.jpeg`;
+  
+    await sharp(req.file.buffer)
+      .resize(600, 600)
+      .toFormat('jpeg')
+      .jpeg({ quality: 95 })
+      .toFile(`uploads${filename}`);
+  
+    // Save image into our db
+    req.body.image = filename;
+  
+    next();
+  };
+
+
   module.exports= {
     registerDoctor,
     getAllDoctor,
     login,
     forgetPassword,
-    resetPassword
+    resetPassword,
+    uploadCategoryImage,resizeImage
   }

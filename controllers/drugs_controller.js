@@ -88,10 +88,23 @@ const get_drugs = async (req, res) => {
     }
   };
 
+  
+const getAllDrug=async(req,res)=>{
+  const alldrugs=await drugsModel.find()
+  if(!alldrugs) return res.status(500).json({msg:"Not Drugs Found"})
+  res.status(200).json(
+    {
+        status:"Success",
+        
+        alldrugs
+      
+      })
+}
+
 
 
 
   module.exports={
     
-    add_drug,get_drugs,update_drug,delete_drug
+    add_drug,get_drugs,update_drug,delete_drug,getAllDrug
   };
