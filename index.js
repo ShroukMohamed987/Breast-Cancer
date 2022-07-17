@@ -1,10 +1,9 @@
 require('dotenv').config()
 const express=require('express')
  const app=express();
-const path= require('path')
+const fileUpload = require("express-fileupload");
 const cors=require('cors');
 const bodyParser=require('body-parser');
-const multer=require('multer');
  const notFoundMiddleware=require('./middleware/not-found')
  const errorMiddleware=require('./middleware/error-handler')
    
@@ -12,7 +11,10 @@ const multer=require('multer');
 
  
  app.use(express.json())
+ app.use(cors());
 
+ app.use(bodyParser.urlencoded({extended:true}));
+app.use(fileUpload({useTempFiles: true,}));
 //connect db
 const connectDB = require('./db/connect')
 
@@ -35,6 +37,8 @@ const raysRouter = require('./routes/rays')
   app.use('/api/v1/drugs',require('./routes/drugs'))
  app.use('/api/v1/contact',require('./routes/contactUs'))
  app.use('/api/v1/help',require('./routes/helpRoute'))
+ app.use('/api',require('./routes/upload'))
+
 /*  */
 
  app .use(notFoundMiddleware)

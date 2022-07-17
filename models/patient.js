@@ -12,8 +12,7 @@ const patientSchema = mongoose.Schema({
   doc_id: { type: mongoose.Schema.Types.ObjectId , ref:'Doctor' },
   city_id: { type: mongoose.Schema.Types.ObjectId , ref:'City' },
   treat_id: {type: mongoose.Schema.Types.ObjectId , ref:'Treatment_method' },
-
-
+  doctor :{type: mongoose.Schema.Types.ObjectId,ref:'Doctor'}
 });
 
 const Patient = mongoose.model("Patient", patientSchema, "Patient");

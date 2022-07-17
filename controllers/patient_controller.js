@@ -19,7 +19,7 @@ const registerPatient = async (req, res) => {
         try {
             const {name,patient_email,patient_password,
               DOB,phone,history_of_disease,disease_type,
-              status,doc_id,city_id,treat_id
+              status,doc_id,city_id,treat_id,doctor
             }=req.body;
             //check if user Already exist in DB or not
            const user = await patientModel.findOne({ patient_email});
@@ -43,6 +43,7 @@ const registerPatient = async (req, res) => {
               city_id,
               treat_id,
               patient_password: passwordHash,
+              doctor
               
       });
       const accesstoken = createAccessToken({ id: newUser._id })

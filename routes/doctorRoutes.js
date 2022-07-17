@@ -8,8 +8,7 @@ const auth=require("../middleware/auth")
     login,
     forgetPassword,
     resetPassword,
-    uploadCategoryImage,
-     resizeImage,
+    
   } = require('../controllers/doctorCtrl')
 
 
@@ -18,7 +17,7 @@ router.route('/adddoctor').post(registerDoctor)
 router.route('/logindoctor').post(login)
 router.route('/forgetPassword').post(forgetPassword)
 router.route('/resetpassword').post(resetPassword)
-router.route('/uploadImage').post(uploadCategoryImage)
+
 
 
 
